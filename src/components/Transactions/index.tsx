@@ -1,3 +1,4 @@
+import { SearchForm } from "../SearchForm";
 import {
   PriceHighlight,
   TransactionsContainer,
@@ -6,6 +7,8 @@ import {
 
 export const Transactions: React.FC = () => (
   <TransactionsContainer>
+    <SearchForm />
+
     <TransactionsTable>
       <tbody>
         <tr>
@@ -21,7 +24,7 @@ export const Transactions: React.FC = () => (
           <td>
             <PriceHighlight variant="outcome">- R$ 3,90</PriceHighlight>
           </td>
-          <td>Venda</td>
+          <td>Alimentação</td>
           <td>13/04/2023</td>
         </tr>
       </tbody>
