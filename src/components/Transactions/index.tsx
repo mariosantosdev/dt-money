@@ -1,3 +1,4 @@
+import { dateFormatter, currencyFormatter } from "../../utils/formatter";
 import { useTransactions } from "../../contexts/TransactionsContext";
 import { SearchForm } from "../SearchForm";
 import {
@@ -21,18 +22,11 @@ export const Transactions: React.FC = () => {
               <td>
                 <PriceHighlight variant={transaction.type}>
                   {transaction.type === "outcome" && "- "}
-                  {Intl.NumberFormat("pt-br", {
-                    currency: "brl",
-                    style: "currency",
-                  }).format(transaction.value)}
+                  {currencyFormatter(transaction.value)}
                 </PriceHighlight>
               </td>
               <td>{transaction.category}</td>
-              <td>
-                {Intl.DateTimeFormat("pt-br").format(
-                  new Date(transaction.createdAt)
-                )}
-              </td>
+              <td>{dateFormatter(new Date(transaction.createdAt))}</td>
             </tr>
           ))}
         </tbody>

@@ -1,3 +1,4 @@
+import { currencyFormatter } from "../../utils/formatter";
 import React from "react";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
 import { SummaryCard, SummaryContainer } from "./styles";
@@ -28,12 +29,7 @@ export const Summary: React.FC = () => {
           <ArrowCircleUp size={32} />
         </header>
 
-        <strong>
-          {Intl.NumberFormat("pt-br", {
-            currency: "brl",
-            style: "currency",
-          }).format(summary.income)}
-        </strong>
+        <strong>{currencyFormatter(summary.income)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="outcome">
@@ -42,12 +38,7 @@ export const Summary: React.FC = () => {
           <ArrowCircleDown size={32} />
         </header>
 
-        <strong>
-          {Intl.NumberFormat("pt-br", {
-            currency: "brl",
-            style: "currency",
-          }).format(summary.outcome)}
-        </strong>
+        <strong>{currencyFormatter(summary.outcome)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="total">
@@ -56,12 +47,7 @@ export const Summary: React.FC = () => {
           <CurrencyDollar size={32} />
         </header>
 
-        <strong>
-          {Intl.NumberFormat("pt-br", {
-            currency: "brl",
-            style: "currency",
-          }).format(summary.total)}
-        </strong>
+        <strong>{currencyFormatter(summary.total)}</strong>
       </SummaryCard>
     </SummaryContainer>
   );
