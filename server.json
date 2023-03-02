@@ -3,10 +3,26 @@
     {
       "id": 1,
       "description": "Pizza",
-      "type": "income",
+      "type": "outcome",
       "value": 100,
       "category": "Alimentação",
       "createdAt": "2021-02-12T00:00:00.000Z"
+    },
+    {
+      "id": 1,
+      "description": "Café",
+      "type": "outcome",
+      "value": 100,
+      "category": "Alimentação",
+      "createdAt": "2023-04-13T00:00:00.000Z"
+    },
+    {
+      "id": 1,
+      "description": "Desenvolvimento de software",
+      "type": "income",
+      "value": 12000,
+      "category": "Venda",
+      "createdAt": "2023-04-13T00:00:00.000Z"
     }
   ]
 }
