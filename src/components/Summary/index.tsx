@@ -3,23 +3,11 @@ import React from "react";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
 import { SummaryCard, SummaryContainer } from "./styles";
 import { useTransactions } from "../../contexts/TransactionsContext";
+import { useSummary } from "../../hooks/useSummary";
 
 export const Summary: React.FC = () => {
   const { transactions } = useTransactions();
-  const summary = transactions.reduce(
-    (acc, transaction) => {
-      if (transaction.type === "income") {
-        acc.income += transaction.value;
-        acc.total += transaction.value;
-      } else {
-        acc.outcome += transaction.value;
-        acc.total -= transaction.value;
-      }
-
-      return acc;
-    },
-    { income: 0, outcome: 0, total: 0 }
-  );
+  const { income, outcome, total } = useSummary(transactions);
 
   return (
     <SummaryContainer>
@@ -29,7 +17,7 @@ export const Summary: React.FC = () => {
           <ArrowCircleUp size={32} />
         </header>
 
-        <strong>{currencyFormatter(summary.income)}</strong>
+        <strong>{currencyFormatter(income)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="outcome">
@@ -38,7 +26,7 @@ export const Summary: React.FC = () => {
           <ArrowCircleDown size={32} />
         </header>
 
-        <strong>{currencyFormatter(summary.outcome)}</strong>
+        <strong>{currencyFormatter(outcome)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="total">
@@ -47,7 +35,7 @@ export const Summary: React.FC = () => {
           <CurrencyDollar size={32} />
         </header>
 
-        <strong>{currencyFormatter(summary.total)}</strong>
+        <strong>{currencyFormatter(total)}</strong>
       </SummaryCard>
     </SummaryContainer>
   );
