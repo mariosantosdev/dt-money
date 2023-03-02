@@ -1,0 +1,12 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Pizza",
+      "type": "income",
+      "value": 100,
+      "category": "Alimentação",
+      "createdAt": "2021-02-12T00:00:00.000Z"
+    }
+  ]
+}
