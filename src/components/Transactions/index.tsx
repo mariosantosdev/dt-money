@@ -9,7 +9,7 @@ import {
 } from './styles'
 
 export const Transactions: React.FC = () => {
-  const { transactions } = useTransactions()
+  const transactions = useTransactions((selector) => selector.transactions)
 
   return (
     <TransactionsContainer>

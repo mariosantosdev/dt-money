@@ -6,7 +6,7 @@ import { useTransactions } from '../../contexts/TransactionsContext'
 import { useSummary } from '../../hooks/useSummary'
 
 export const Summary: React.FC = () => {
-  const { transactions } = useTransactions()
+  const transactions = useTransactions((selector) => selector.transactions)
   const { income, outcome, total } = useSummary(transactions)
 
   return (

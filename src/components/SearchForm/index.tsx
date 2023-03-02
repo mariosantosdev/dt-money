@@ -13,7 +13,9 @@ const searchSchema = z.object({
 type SearchFormProps = z.infer<typeof searchSchema>
 
 export const SearchForm: React.FC = () => {
-  const { fetchTransactions } = useTransactions()
+  const fetchTransactions = useTransactions(
+    (selector) => selector.fetchTransactions,
+  )
   const {
     register,
     handleSubmit,

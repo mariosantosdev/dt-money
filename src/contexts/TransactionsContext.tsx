@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { createContext, useContextSelector } from 'use-context-selector'
 import { api } from '../services/api'
 
 export type Transaction = {
@@ -78,4 +79,11 @@ export const TransactionsProvider: React.FC<TransactionsProviderProps> = ({
   )
 }
 
-export const useTransactions = () => useContext(TransactionContext)
+type Selector<T> = (value: TransactionsContextData) => T
+
+export function useTransactions<T>(selector: Selector<T>) {
+  return useContextSelector<TransactionsContextData, T>(
+    TransactionContext,
+    selector,
+  )
+}

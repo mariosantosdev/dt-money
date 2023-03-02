@@ -23,7 +23,9 @@ const transactionSchema = z.object({
 type TransactionFormProps = z.infer<typeof transactionSchema>
 
 export const NewTransactionModal: React.FC = () => {
-  const { createTransaction } = useTransactions()
+  const createTransaction = useTransactions((selector) => {
+    return selector.createTransaction
+  })
   const {
     control,
     register,
