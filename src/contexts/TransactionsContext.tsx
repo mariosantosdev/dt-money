@@ -25,7 +25,7 @@ export const TransactionsProvider: React.FC<TransactionsProviderProps> = ({
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3333/transactions")
+    fetch("http://localhost:3333/transactions?_order=desc&_sort=createdAt")
       .then((response) => response.json())
       .then((data) => setTransactions(data));
   }, []);
