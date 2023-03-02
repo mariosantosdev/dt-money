@@ -17,7 +17,7 @@ export const Transactions: React.FC = () => {
       <TransactionsTable>
         <tbody>
           {transactions.map((transaction) => (
-            <tr>
+            <tr key={transaction.id}>
               <td width="50%">{transaction.description}</td>
               <td>
                 <PriceHighlight variant={transaction.type}>
