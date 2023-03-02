@@ -1,50 +1,50 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { api } from "../services/api";
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { api } from '../services/api'
 
 export type Transaction = {
-  id: number;
-  description: string;
-  type: "income" | "outcome";
-  value: number;
-  category: string;
-  createdAt: string;
-};
-
-interface TransactionsContextData {
-  transactions: Transaction[];
-  fetchTransactions: (query?: string) => Promise<void>;
-  createTransaction: (
-    transaction: CreateTransactionInput
-  ) => Promise<Transaction>;
-}
-
-interface TransactionsProviderProps {
-  children: React.ReactNode;
+  id: number
+  description: string
+  type: 'income' | 'outcome'
+  value: number
+  category: string
+  createdAt: string
 }
 
 type CreateTransactionInput = {
-  category: string;
-  description: string;
-  type: "income" | "outcome";
-  value: number;
-};
+  category: string
+  description: string
+  type: 'income' | 'outcome'
+  value: number
+}
 
-const TransactionContext = createContext({} as TransactionsContextData);
+interface TransactionsContextData {
+  transactions: Transaction[]
+  fetchTransactions: (query?: string) => Promise<void>
+  createTransaction: (
+    transaction: CreateTransactionInput,
+  ) => Promise<Transaction>
+}
+
+interface TransactionsProviderProps {
+  children: React.ReactNode
+}
+
+const TransactionContext = createContext({} as TransactionsContextData)
 
 export const TransactionsProvider: React.FC<TransactionsProviderProps> = ({
   children,
 }) => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([])
 
-  async function fetchTransactions(query = "") {
-    const { data } = await api.get("/transactions", {
+  async function fetchTransactions(query = '') {
+    const { data } = await api.get('/transactions', {
       params: {
-        _sort: "createdAt",
-        _order: "desc",
+        _sort: 'createdAt',
+        _order: 'desc',
         q: query,
       },
-    });
-    setTransactions(data);
+    })
+    setTransactions(data)
   }
 
   async function createTransaction({
@@ -53,21 +53,21 @@ export const TransactionsProvider: React.FC<TransactionsProviderProps> = ({
     type,
     value,
   }: CreateTransactionInput) {
-    const { data } = await api.post<Transaction>("/transactions", {
+    const { data } = await api.post<Transaction>('/transactions', {
       category,
       description,
       type,
       value,
       createdAt: new Date().toISOString(),
-    });
+    })
 
-    setTransactions((prev) => [data, ...prev]);
-    return data;
+    setTransactions((prev) => [data, ...prev])
+    return data
   }
 
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+    fetchTransactions()
+  }, [])
 
   return (
     <TransactionContext.Provider
@@ -75,7 +75,7 @@ export const TransactionsProvider: React.FC<TransactionsProviderProps> = ({
     >
       {children}
     </TransactionContext.Provider>
-  );
-};
+  )
+}
 
-export const useTransactions = () => useContext(TransactionContext);
+export const useTransactions = () => useContext(TransactionContext)

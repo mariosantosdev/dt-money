@@ -1,14 +1,15 @@
-import { dateFormatter, currencyFormatter } from "../../utils/formatter";
-import { useTransactions } from "../../contexts/TransactionsContext";
-import { SearchForm } from "../SearchForm";
+import React from 'react'
+import { dateFormatter, currencyFormatter } from '../../utils/formatter'
+import { useTransactions } from '../../contexts/TransactionsContext'
+import { SearchForm } from '../SearchForm'
 import {
   PriceHighlight,
   TransactionsContainer,
   TransactionsTable,
-} from "./styles";
+} from './styles'
 
 export const Transactions: React.FC = () => {
-  const { transactions } = useTransactions();
+  const { transactions } = useTransactions()
 
   return (
     <TransactionsContainer>
@@ -21,7 +22,7 @@ export const Transactions: React.FC = () => {
               <td width="50%">{transaction.description}</td>
               <td>
                 <PriceHighlight variant={transaction.type}>
-                  {transaction.type === "outcome" && "- "}
+                  {transaction.type === 'outcome' && '- '}
                   {currencyFormatter(transaction.value)}
                 </PriceHighlight>
               </td>
@@ -32,5 +33,5 @@ export const Transactions: React.FC = () => {
         </tbody>
       </TransactionsTable>
     </TransactionsContainer>
-  );
-};
+  )
+}

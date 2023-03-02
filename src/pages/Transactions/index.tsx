@@ -1,6 +1,6 @@
-import { Header } from "../../components/Header";
-import { Summary } from "../../components/Summary";
-import { Transactions } from "../../components/Transactions";
+import { Header } from '../../components/Header'
+import { Summary } from '../../components/Summary'
+import { Transactions } from '../../components/Transactions'
 
 export function TransactionsPage() {
   return (
@@ -10,5 +10,5 @@ export function TransactionsPage() {
 
       <Transactions />
     </div>
-  );
+  )
 }

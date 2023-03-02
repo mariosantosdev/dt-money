@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const SummaryContainer = styled.section`
   width: 100%;
@@ -10,14 +10,14 @@ export const SummaryContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: -5rem;
-`;
+`
 
 type SummaryCardProps = {
-  variant: "income" | "outcome" | "total";
-};
+  variant: 'income' | 'outcome' | 'total'
+}
 
 export const SummaryCard = styled.div<SummaryCardProps>`
-  background-color: ${({ theme }) => theme["gray-600"]};
+  background-color: ${({ theme }) => theme['gray-600']};
   border-radius: 6px;
   padding: 2rem;
 
@@ -25,7 +25,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: ${({ theme }) => theme["gray-300"]};
+    color: ${({ theme }) => theme['gray-300']};
   }
 
   strong {
@@ -35,28 +35,28 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   }
 
   ${({ variant }) =>
-    variant === "income" &&
+    variant === 'income' &&
     css`
       svg {
-        color: ${({ theme }) => theme["green-300"]};
+        color: ${({ theme }) => theme['green-300']};
       }
     `}
 
   ${({ variant }) =>
-    variant === "outcome" &&
+    variant === 'outcome' &&
     css`
       svg {
-        color: ${({ theme }) => theme["red-300"]};
+        color: ${({ theme }) => theme['red-300']};
       }
     `}
 
   ${({ variant, theme }) =>
-    variant === "total" &&
+    variant === 'total' &&
     css`
-      background-color: ${theme["green-700"]};
+      background-color: ${theme['green-700']};
 
       svg {
-        color: ${theme["white"]};
+        color: ${theme.white};
       }
     `}
-`;
+`

@@ -1,13 +1,13 @@
-import { currencyFormatter } from "../../utils/formatter";
-import React from "react";
-import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
-import { SummaryCard, SummaryContainer } from "./styles";
-import { useTransactions } from "../../contexts/TransactionsContext";
-import { useSummary } from "../../hooks/useSummary";
+import { currencyFormatter } from '../../utils/formatter'
+import React from 'react'
+import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
+import { SummaryCard, SummaryContainer } from './styles'
+import { useTransactions } from '../../contexts/TransactionsContext'
+import { useSummary } from '../../hooks/useSummary'
 
 export const Summary: React.FC = () => {
-  const { transactions } = useTransactions();
-  const { income, outcome, total } = useSummary(transactions);
+  const { transactions } = useTransactions()
+  const { income, outcome, total } = useSummary(transactions)
 
   return (
     <SummaryContainer>
@@ -38,5 +38,5 @@ export const Summary: React.FC = () => {
         <strong>{currencyFormatter(total)}</strong>
       </SummaryCard>
     </SummaryContainer>
-  );
-};
+  )
+}

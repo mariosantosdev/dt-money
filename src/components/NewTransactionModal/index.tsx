@@ -1,28 +1,29 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as Dialog from '@radix-ui/react-dialog'
+import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   CloseButton,
   Content,
   Overlay,
   TransactionType,
   TransactionTypeButton,
-} from "./styles";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useTransactions } from "../../contexts/TransactionsContext";
+} from './styles'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useTransactions } from '../../contexts/TransactionsContext'
+import React from 'react'
 
 const transactionSchema = z.object({
   description: z.string().min(2),
   value: z.number(),
   category: z.string().min(2),
-  type: z.enum(["income", "outcome"]),
-});
+  type: z.enum(['income', 'outcome']),
+})
 
-type TransactionFormProps = z.infer<typeof transactionSchema>;
+type TransactionFormProps = z.infer<typeof transactionSchema>
 
 export const NewTransactionModal: React.FC = () => {
-  const { createTransaction } = useTransactions();
+  const { createTransaction } = useTransactions()
   const {
     control,
     register,
@@ -31,15 +32,15 @@ export const NewTransactionModal: React.FC = () => {
     formState: { isSubmitting },
   } = useForm<TransactionFormProps>({
     resolver: zodResolver(transactionSchema),
-  });
+  })
 
   const handleCreateTransaction: SubmitHandler<TransactionFormProps> = async (
-    data
+    data,
   ) => {
-    await createTransaction(data);
+    await createTransaction(data)
 
-    reset();
-  };
+    reset()
+  }
 
   return (
     <Dialog.Portal>
@@ -54,17 +55,17 @@ export const NewTransactionModal: React.FC = () => {
           <input
             type="text"
             placeholder="Descrição"
-            {...register("description")}
+            {...register('description')}
           />
           <input
             type="number"
             placeholder="Valor"
-            {...register("value", { valueAsNumber: true })}
+            {...register('value', { valueAsNumber: true })}
           />
           <input
             type="text"
             placeholder="Categoria"
-            {...register("category")}
+            {...register('category')}
           />
 
           <Controller
@@ -91,5 +92,5 @@ export const NewTransactionModal: React.FC = () => {
         </form>
       </Content>
     </Dialog.Portal>
-  );
-};
+  )
+}
